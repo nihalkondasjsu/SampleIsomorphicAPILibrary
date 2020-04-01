@@ -1,17 +1,15 @@
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
-var FormData = require('form-data');
 
 function sendMail(to,subject,html){
-    let formData = new FormData();
-    
-    formData.append('to', to);
-    formData.append('subject', subject);
-    formData.append('html', html);
-
+    console.log('read '+JSON.stringify({to,subject,html}))
     fetch('http://06a1cf11.ngrok.io/mail', {
         method: 'post',
-        body: formData
+        headers: {
+            'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
+            'Content-Type': 'application/json; charset=utf-8'
+          },
+        body: JSON.stringify({to,subject,html})
       })
     .then(function(response) {
         if (response.status >= 400) {
