@@ -4,7 +4,7 @@ require('isomorphic-fetch');
 function sendMail(to,subject,html){
     fetch('http://06a1cf11.ngrok.io/mail', {
         method: 'post',
-        body: JSON.stringify({to,subject,html})
+        body: {to,subject,html}
       })
     .then(function(response) {
         if (response.status >= 400) {
