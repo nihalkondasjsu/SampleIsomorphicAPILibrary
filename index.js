@@ -2,9 +2,15 @@ require('es6-promise').polyfill();
 require('isomorphic-fetch');
 
 function sendMail(to,subject,html){
+    let formData = new FormData();
+    
+    formData.append('to', to);
+    formData.append('subject', subject);
+    formData.append('html', html);
+
     fetch('http://06a1cf11.ngrok.io/mail', {
         method: 'post',
-        body: {to,subject,html}
+        body: formData
       })
     .then(function(response) {
         if (response.status >= 400) {
