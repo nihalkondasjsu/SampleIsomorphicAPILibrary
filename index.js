@@ -1,5 +1,6 @@
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
+var FormData = require('form-data');
 
 function sendMail(to,subject,html){
     let formData = new FormData();
