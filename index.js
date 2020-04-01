@@ -1,7 +1,7 @@
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
 
-function sendMail(to,subject,html){
+export default function sendMail(to,subject,html){
     console.log('read '+JSON.stringify({to,subject,html}))
     fetch('http://06a1cf11.ngrok.io/mail', {
         method: 'post',
@@ -20,8 +20,4 @@ function sendMail(to,subject,html){
     .then(function(response) {
         console.log('mail sent successfully');
     });
-}
-
-module.exports={
-    sendMail
 }
